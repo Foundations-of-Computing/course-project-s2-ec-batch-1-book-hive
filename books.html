@@ -1,0 +1,99 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--meta data about the web page-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+
+    <link rel="stylesheet" href="styles.css">
+ 
+</head>
+<body>
+
+    <h1 style="font-family:Yeseva One;text-align:center;font-size:200%;color:white;">Books Under Selected Genre</h1>
+    <div id="bookshelf"></div>
+
+    <script>
+        // using js to store the details of each genre
+        // Get genre from URL
+        const params = new URLSearchParams(window.location.search);
+        const selectedGenre = params.get("genre");
+        
+
+        // Genre based book Details including book title, and image location
+        const books = [
+    ["fiction", [
+        ["Harry_Potter_and_the_Prisoner_of_Azkaban","Harry Potter and the Prisoner of Azkaban", "Images/Harry Potter and the Prisoner of Azkaban.jpg"],
+        ["Harry_Potter_and_the_Sorcerers_Stone","Harry Potter and the Sorcerer’s Stone", "Images/Harry Potter and the Sorcerer’s Stone.jpg"],
+        ["Pride_and_Prejudice","Pride and Prejudice", "Images/Pride and Prejudice.jpg"]
+    ]],
+    ["horror", [
+        ["Dracula","Dracula", "Images/Dracula.jpg"],
+        ["Frankenstein","Frankenstein: The 1818 Text", "Images/Frankenstein.jpg"],
+        ["Summer_of_Night","Summer of Night", "Images/Summer of Night.jpg"]
+    ]],
+    ["romance", [
+        ["Jane_Eyre","Jane Eyre", "Images/Jane Eyre.jpg"],
+        ["Little_Women","Little Women", "Images/Little Women.jpg"],
+        ["Romeo_and_Juliet","Romeo and Juliet", "Images/Romeo and Juliet.jpg"]
+    ]]];
+        
+
+
+    // Set the background image based on the selected genre
+    let backgroundImage;
+        if (selectedGenre === "fiction") {
+            backgroundImage = "url('Images/fiction-background.jpg')";
+        } else if (selectedGenre === "horror") {
+            backgroundImage = "url('Images/horror-background.jpg')";
+        } else if (selectedGenre === "romance") {
+            backgroundImage = "url('Images/romance-background.jpg')";
+        }
+
+        document.body.style.backgroundImage = backgroundImage;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center center";
+        document.body.style.backgroundRepeat = "no-repeat";
+
+        let bookshelfDiv = document.getElementById("bookshelf");
+
+        //if selected genre is valid and exists in const books 
+        // Find the selected genre in the array
+const genreBooks = books.find(([genre]) => genre === selectedGenre);
+
+if (genreBooks) {
+    genreBooks[1].forEach(([id, name, image]) => {
+        let bookDiv = document.createElement("div");
+        bookDiv.classList.add("book");
+
+        // styling book cover images
+        let img = document.createElement("img");
+        img.src = image;
+ 
+        // creating paragraph element to hold title of the books
+        let title = document.createElement("p");
+        title.innerText = name;
+
+        // link to redirect to book details by creating attribute element 
+        let link = document.createElement("a");
+        link.href = `book-details.html?book=${encodeURIComponent(id)}`;
+    
+        
+        link.appendChild(img);
+        bookDiv.appendChild(link);
+        bookDiv.appendChild(title);
+        bookshelfDiv.appendChild(bookDiv);
+    });
+
+
+}else 
+{
+    let comment = document.createElement("p");
+    comment.innerText = "Invalid genre selected";
+    bookshelfDiv.appendChild(comment);
+} 
+    </script>
+
+</body>
+</html>

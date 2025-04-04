@@ -1,0 +1,32 @@
+/* Set background image for the entire page */
+body {
+    background-image: url('Images/background.jpg'); /* Path to your background image */
+    background-size: cover; /* Makes the background image cover the entire page */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background image fixed during scroll */
+    margin: 0;
+    padding: 0;
+    font-family: 'Yeseva One'; /* You can customize the font */
+}
+
+/* Styling for the title */
+.title {
+    font-family: 'Yeseva One';
+    text-align: center;
+    font-size: 600%;
+}
+
+/* Styling for the subtitle */
+.subtitle {
+    text-align: center;
+}
+
+/* Center the genre selection images */
+.genre-selection {
+    text-align: center;
+}
+
+/* Styling for the information text */
+.info {
+    text-align: center;
+}

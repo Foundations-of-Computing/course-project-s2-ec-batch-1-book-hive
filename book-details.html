@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--meta data about the web page-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+</head>
+<body>
+
+
+    <div id="bookDetails"></div>
+
+    <script>
+        // using js to store the details of each genre
+        // Get book name from URL
+        const params = new URLSearchParams(window.location.search);
+        const bookId = decodeURIComponent(params.get("book"));
+       
+        // Book Details
+        const books = [
+            ["Harry_Potter_and_the_Prisoner_of_Azkaban","Harry Potter and the Prisoner of Azkaban",
+                "Images/Harry Potter and the Prisoner of Azkaban.jpg","⭐⭐⭐⭐",
+                "Harry Potter, along with his best friends, Ron and Hermione, is about to start his third year at Hogwarts School of Witchcraft and Wizardry. Harry can't wait to get back to school after the summer holidays. (Who wouldn't if they lived with the horrible Dursleys?) But when Harry gets to Hogwarts, the atmosphere is tense. There's an escaped mass murderer on the loose, and the sinister prison guards of Azkaban have been called in to guard the school...",
+                "https://amzn.in/d/dHks9H6"
+            ],
+            ["Harry_Potter_and_the_Sorcerers_Stone", "Harry Potter and the Sorcerer’s Stone",
+                "Images/Harry Potter and the Sorcerer’s Stone.jpg","⭐⭐⭐⭐⭐",
+                "Turning the envelope over, his hand trembling, Harry saw a purple wax seal bearing a coat of arms; a lion, an eagle, a badger and a snake surrounding a large letter 'H'.",
+                "https://amzn.in/d/9BnXZNo"
+            ],
+            ["Pride_and_Prejudice", "Pride and Prejudice",
+                "Images/Pride and Prejudice.jpg","⭐⭐⭐⭐",
+                "Pride and Prejudice has charmed generations of readers for more than two centuries. Jane Austen's much-adapted novel is famed for its witty, spirited heroine, sensational romances, and deft remarks on the triumphs and pitfalls of social convention. Author Jane Austen (1775-1817) was an English novelist whose works of social realism achieved unprecedented critical and popular success, though Austen herself remained an anonymous writer throughout her life.",
+                "https://amzn.in/d/04jU3da"
+            ],
+
+            ["Dracula", "Dracula" ,
+                "Images/Dracula.jpg","⭐⭐⭐⭐",
+                "When Jonathan Harker visits Transylvania to help Count Dracula with the purchase of a London house, he makes a series of horrific discoveries about his client. Soon afterwards, various bizarre incidents unfold in England: an apparently unmanned ship is wrecked off the coast of Whitby; a young woman discovers strange puncture marks on her neck; and the inmate of a lunatic asylum raves about the 'Master' and his imminent arrival.",
+                "https://amzn.in/d/dtWmta0"
+            ],
+            ["Frankenstein","Frankenstein: The 1818 Text",
+                 "Images/Frankenstein.jpg","⭐⭐⭐",
+                 "Mary Shelley's seminal novel of the scientist whose creation becomes a monster.This edition is the original 1818 text, which preserves the hard-hitting and politically charged aspects of Shelley's original writing, as well as her unflinching wit and strong female voice.",
+                 "https://amzn.in/d/7fxt4W6"
+            ],
+            ["Summer_of_Night","Summer of Night",
+                 "Images/Summer of Night.jpg","⭐⭐⭐⭐",
+                 "It's the summer of 1960 in Elm Haven, Illinois, and five 12-year old boys are forming the bonds that a lifetime of changes will never erase. But then a dark cloud threatens the bright promise of summer vacation: on the last day of school, their classmate Tubby Cooke vanishes. Soon, the group discovers stories of other children who once disappeared from Elm Haven. And there are other strange things happening in town.",
+                 "https://amzn.in/d/7fxt4W6"
+            ],
+
+
+            ["Jane_Eyre","Jane Eyre",
+                "Images/Jane Eyre.jpg","⭐⭐⭐⭐",
+                "Charlotte Brontë tells the story of orphaned Jane Eyre, who grows up in the home of her heartless aunt, enduring loneliness and cruelty. This troubled childhood strengthens Jane's natural independence and spirit - which prove necessary when she finds employment as a governess to the young ward of Byronic, brooding Mr Rochester",
+                "https://amzn.in/d/8oBkeBd"
+            ],
+            ["Little_Women","Little Women",
+                "Images/Little Women.jpg","⭐⭐⭐⭐",
+                "Little Women is a coming-of-age novel written by American novelist Louisa May Alcott. Originally published in two volumes in 1868 and 1869, the story follows the lives of the four March sisters—Meg, Jo, Beth, and Amy—and details their passage from childhood to womanhood. Set in Concord, Massachusetts, during the Civil War era, the novel explores themes of love, loss, and self-discovery",
+                "https://amzn.in/d/7ldHrL6"
+            ],
+            ["Romeo_and_Juliet","Romeo and Juliet",
+                "Images/Romeo and Juliet.jpg","⭐⭐⭐⭐",
+                "The Tragedy of Romeo and Juliet, often shortened to Romeo and Juliet, is a tragedy written by William Shakespeare early in his career about the romance between two Italian youths from feuding families. It was among Shakespeare's most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed. Today, the title characters are regarded as archetypal young lovers. ",
+                "https://amzn.in/d/0e2VYSh"
+            ]
+    ];
+        // Get book details container
+        let bookDetailsDiv = document.getElementById("bookDetails");
+
+        // Find the selected book in the list
+        const book = books.find(([id]) => id === bookId);
+
+        if (book) {
+            const [id, title, image, rating, description, link] = book;
+
+            let bookDiv = document.createElement("div");
+            bookDiv.style.textAlign = "center";
+            bookDiv.style.marginTop = "20px";
+
+            let img = document.createElement("img");
+            img.src = image;
+            img.style.width = "250px";
+            img.style.height = "auto";
+            img.style.display = "block";
+            img.style.margin = "0 auto";
+
+            let bookTitle = document.createElement("h1");
+            bookTitle.innerText = title;
+
+            let bookRating = document.createElement("p");
+            bookRating.innerText = `Rating: ${rating}`;
+
+            let bookDescription = document.createElement("p");
+            bookDescription.innerText = description;
+
+            let buyLink = document.createElement("a");
+            buyLink.href = link;
+            buyLink.innerText = "Buy on Amazon";
+            buyLink.target = "_blank";
+            buyLink.style.display = "block";
+            buyLink.style.marginTop = "10px";
+            buyLink.style.fontSize = "18px";
+
+            bookDiv.appendChild(img);
+            bookDiv.appendChild(bookTitle);
+            bookDiv.appendChild(bookRating);
+            bookDiv.appendChild(bookDescription);
+            bookDiv.appendChild(buyLink);
+
+            bookDetailsDiv.appendChild(bookDiv);
+        } 
+        else {
+            let errorMessage = document.createElement("p");
+            errorMessage.innerText = "Invalid book selected.";
+            errorMessage.style.textAlign = "center";
+            bookDetailsDiv.appendChild(errorMessage);
+        }
+    </script>
+
+</body>
+</html>

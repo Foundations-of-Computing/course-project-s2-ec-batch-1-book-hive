@@ -1,0 +1,39 @@
+/* CSS file to style the books and the bookshelf */
+body {
+    font-family: Arial, sans-serif;
+background-image: url('Images/Giphy.gif'); /* Replace with your GIF path */
+    background-color: #f0f0f0; /* Fallback color in case GIF doesn't load */
+    background-size: cover;  /* Make the background cover the entire screen */
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Don't repeat the image */
+    margin: 0; /* Remove default margin */
+    height: 100vh;
+background-color: #f0f0f0;
+}
+h1 {
+    text-align: center;
+    text-color:#f0f0f0;
+}
+
+#bookshelf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#bookshelf div {
+    text-align: center;
+    width: 30%;
+}
+
+img {
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5); /* Image shadow */
+}
+
+p {
+    margin-top: 10px;
+}
